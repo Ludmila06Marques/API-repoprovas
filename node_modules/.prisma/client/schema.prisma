@@ -1,0 +1,80 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+model Users {
+  id       Int    @id @default(autoincrement())
+  email    String @unique
+  password String
+
+
+
+  @@map("users")
+}
+
+model Categories {
+  id       Int    @id @default(autoincrement())
+  name String
+
+   Tests   Tests[]
+
+  @@map("categories")
+}
+
+model Tests {
+  id       Int    @id @default(autoincrement())
+  name       String
+  pdfUrl     String
+  category Categories @relation(fields:[categoryId], references:[id])
+  teacherDiscipline TeachersDisciplines @relation(fields:[teacherDisciplineId], references:[id])
+
+  categoryId Int
+  teacherDisciplineId Int
+
+
+  @@map("tests")
+}
+
+model TeachersDisciplines {
+  id       Int    @id @default(autoincrement())
+  teacher Teachers  @relation(fields:[teacherId], references:[id])
+  discipline Disciplines @relation (fields:[disciplineId], references:[id])
+
+  teacherId Int
+  disciplineId Int
+  Tests   Tests[]
+  @@map("teacherDisciplines")
+}
+
+model Teachers {
+  id       Int    @id @default(autoincrement())
+  name   String
+
+  TeachersDisciplines   TeachersDisciplines[]
+  @@map("teachers")
+}
+
+model Disciplines {
+  id       Int    @id @default(autoincrement())
+ name 	String
+ term Terms  @relation(fields:[termId], references:[id])
+
+ termId Int
+  TeachersDisciplines   TeachersDisciplines[]
+  
+  @@map("disciplines")
+}
+
+model Terms {
+  id       Int    @id @default(autoincrement())
+  name   String
+   Disciplines Disciplines[]
+  @@map("terms")
+}
