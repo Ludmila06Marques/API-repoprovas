@@ -1,5 +1,6 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
+//https://www.prisma.io/docs/concepts/components/prisma-schema/relations
 
 generator client {
   provider = "prisma-client-js"
@@ -13,6 +14,7 @@ model Users {
   id       Int    @id @default(autoincrement())
   email    String @unique
   password String
+ confirmPassword String
 
 
 
@@ -50,7 +52,7 @@ model TeachersDisciplines {
   teacherId Int
   disciplineId Int
   Tests   Tests[]
-  @@map("teacherDisciplines")
+  @@map("teachersDisciplines")
 }
 
 model Teachers {
@@ -66,7 +68,7 @@ model Disciplines {
  name 	String
  term Terms  @relation(fields:[termId], references:[id])
 
- termId Int
+  termId Int
   TeachersDisciplines   TeachersDisciplines[]
   
   @@map("disciplines")
@@ -74,7 +76,7 @@ model Disciplines {
 
 model Terms {
   id       Int    @id @default(autoincrement())
-  name   String
+  number   Int
    Disciplines Disciplines[]
   @@map("terms")
 }
