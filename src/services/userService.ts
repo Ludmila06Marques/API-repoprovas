@@ -8,7 +8,7 @@ import * as userSchema from "../type/userType.js"
 
 dotenv.config()
 
-export async function createUser(user:userSchema.CreateUserSchema){
+export async function createUser(user:userSchema.CreateUserType){
     const userExist = await findUserByEmail(user.email);
     if (userExist) {
       throw failsConflict();
@@ -19,13 +19,13 @@ export async function createUser(user:userSchema.CreateUserSchema){
     await insertUser({...user, password: criptoPass});
 }
 
-export async function loginUser(login: userSchema.CreateUserSchema) {
+export async function loginUser(login: userSchema.CreateUserType) {
   const user = await createToken(login);
   const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET);
   return token;
 }
 
-export async function createToken(login: userSchema.CreateUserSchema) {
+export async function createToken(login: userSchema.CreateUserType) {
   const user = await findUserByEmail(login.email);
   if (!user) throw failUnauth("unauthorized");
 

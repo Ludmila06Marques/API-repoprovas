@@ -1,5 +1,6 @@
 import { Request , Response } from "express"
 import { createUser , loginUser} from "../services/userService.js";
+import { UserConfirmPassword } from "../type/userType.js";
 
 export async function login(req:Request ,res:Response){
   const user = req.body;
@@ -9,7 +10,11 @@ export async function login(req:Request ,res:Response){
 }
 
 export async function signup(req:Request ,res:Response){
-  const user = req.body;
-  await createUser(user);
+  const user:UserConfirmPassword = req.body;
+  const userFormated={
+    email:user.email,
+    password:user.password
+  }
+  await createUser(userFormated);
   res.sendStatus(201);
 }

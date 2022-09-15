@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
-import { findUserById } from "../services/userService.js";
+import * as searchUser from "../services/userService.js"
 import { failUnauth } from "../utils/errorUtils.js";
 dotenv.config();
 
@@ -16,7 +16,7 @@ export async function validateTokenFunction(req: Request, res: Response, next: N
   try {
     const JWT_SECRET = process.env.JWT_SECRET;
     const { userId } = jwt.verify(token,JWT_SECRET) as { userId: number };
-    const user = await findUserById(userId);
+    const user = await searchUser.findUserById(userId);
     res.locals.user = user;
     next();
   } catch {

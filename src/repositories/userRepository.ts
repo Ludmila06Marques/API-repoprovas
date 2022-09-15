@@ -12,7 +12,7 @@ export async function findById(id: number) {
     where: { id }
   });
 }
-export async function insertUser(user:userSchema.CreateUserSchema){
+export async function insertUser(user:userSchema.CreateUserType){
 
     return prisma.users.create({data:user})
 
