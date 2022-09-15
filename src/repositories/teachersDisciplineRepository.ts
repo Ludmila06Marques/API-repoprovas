@@ -9,3 +9,9 @@ export async function findTeachersDisciplineById( teacherId:number,disciplineId:
   
     
   }
+
+  export async function findById(id:number){
+    return prisma.teachersDisciplines.findMany({
+      where:{id}
+    })
+  }

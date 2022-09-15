@@ -1,5 +1,6 @@
 import express, {json} from "express";
 import dotenv from "dotenv";
+import "express-async-errors"
 import cors from "cors";
 
 dotenv.config();

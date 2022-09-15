@@ -1,12 +1,13 @@
 import { NextFunction, Request, Response } from "express";
-import { ObjectSchema } from "joi";
+import { testSchema } from "../schemas/testSchema.js";
 
-export function validateSchemaMiddleware(schema: ObjectSchema) {
-  return (req: Request, res: Response, next: NextFunction) => {
-    const validation = schema.validate(req.body);
-    if (validation.error) {
-      return res.status(422).send({ error: validation.error.message });
-    }
-    next();
-  };
+export function validateTest(req : Request, res:Response, next:NextFunction) {
+  const test = req.body
+  console.log(req.body)
+  const validation = testSchema.validate(test)
+  if (validation.error) {
+    return res.sendStatus(422)
+  }
+
+  next()
 }

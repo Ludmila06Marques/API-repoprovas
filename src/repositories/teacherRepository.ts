@@ -6,3 +6,4 @@ export async function findTeacherByName(name:string) {
         where:{name}
     })
   }
+
