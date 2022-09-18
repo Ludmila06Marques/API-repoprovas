@@ -6,8 +6,6 @@ export async function findTeachersDisciplineById( teacherId:number,disciplineId:
         where:{teacherId,disciplineId}
        
     })
-  
-    
   }
 
   export async function findById(id:number){

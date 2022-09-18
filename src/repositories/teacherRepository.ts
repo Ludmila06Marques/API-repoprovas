@@ -6,4 +6,9 @@ export async function findTeacherByName(name:string) {
         where:{name}
     })
   }
+  export async function findTeacherById(id:number) {
+    return prisma.teachers.findFirst({
+        where:{id}
+    })
+  }
 
