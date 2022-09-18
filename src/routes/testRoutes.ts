@@ -6,8 +6,10 @@ import { validateTest } from "../middlewares/validateSchema.js";
 const testRoute = Router();
 
 testRoute.post("/test" ,validateTest, testController.insertNewTest);
+testRoute.get("/test" , testController.getAll);
 testRoute.get("/testByDiscipline" , testController.getTestByTerm)
 testRoute.get("/testByTeacher" , testController.findTestsByTeacher)
+testRoute.delete("/test/:id" , testController.deleteTest)
 
 
 export default testRoute;

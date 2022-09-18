@@ -37,10 +37,33 @@ export async function createTest(test:testType.CreateTestTypeInput){
 
 export async function getTestByTerm(){
  
-  return await testRepository.findTestsByDisciplineId()
-
+  const result=  await testRepository.findTestsByDisciplineId()
+  if(!result) throw failNotFound("tests not found")
+return result
 }
 
 export async function findTestsByTeacher(){
-  return await testRepository.findTestsByTeacher()
+  
+  const result= await testRepository.findTestsByTeacher()
+  if(!result) throw failNotFound("tests not found")
+  return result
+}
+
+export async function deleteTest(id:number) {
+  if(isNaN(id)) throw failNotFound('Id must be a number')
+     
+  const result= await  testRepository.getTestById(id)
+  if(!result) throw failNotFound('Tests does not exist')
+
+  return await testRepository.deleteTest(id)
+  
+}
+export async function getAll() {
+
+  const result = await testRepository.gelAllTests()
+ 
+  if(!result) throw failNotFound('Tests does not exist')
+
+  return result
+  
 }

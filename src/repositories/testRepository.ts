@@ -19,6 +19,10 @@ export async function gelAllTests(){
 export async function getTestByUrl(pdfUrl:string){
     return prisma.tests.findFirst({where:{pdfUrl}})
 }
+export async function getTestById(id:number){
+    return prisma.tests.findFirst({where:{id}})
+}
+
 
 export async function findTestsByDisciplineId(){
     const result= await prisma.terms.findMany({
@@ -91,5 +95,7 @@ export async function findTestsByTeacher(){
     return result
 }
 
-
+export async function deleteTest(id:number){
+    return prisma.tests.delete({where:{id}})
+}
 
