@@ -11,19 +11,6 @@ export async function insertNewTest(req:Request ,res:Response){
   }
 
 
-export async function getTestsOrder(req:Request ,res:Response){
-    const disciplineParam= req.params.discipline
-    const termparam= parseInt(req.params.terms)
-    const category= req.params.category
-
-    const result = await  testService.getTestsOrder(disciplineParam, termparam,category)
- 
- 
-
-  res.send(result).status(200)
-
-}
-
 export async function getAll(req:Request ,res:Response){
 
  const result = await testRepository.gelAllTests()

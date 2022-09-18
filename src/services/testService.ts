@@ -3,14 +3,11 @@ import * as testType from "../type/testType"
 import * as testRepository from "../repositories/testRepository.js"
 import { failsConflict , failNotFound } from "../utils/errorUtils.js";
 import * as discipline from "../repositories/disciplineRepostory.js"
-import * as termRepo from "../repositories/termRepository.js"
 import * as categoryRepo from "../repositories/categoryRepository.js"
 import * as teacher from "../repositories/teacherRepository.js"
 import * as teachersDiscipline from "../repositories/teachersDisciplineRepository.js"
 import { CreateTestType } from "../type/testType";
-import { testSchema } from "../schemas/testSchema";
-import * as teacherDisciplineRepository from "../repositories/teachersDisciplineRepository.js"
-import * as teacherRepository  from "../repositories/teacherRepository.js"
+
 
 
 export async function createTest(test:testType.CreateTestTypeInput){
@@ -37,19 +34,7 @@ export async function createTest(test:testType.CreateTestTypeInput){
    return await testRepository.insertTest({...testFormated});
     
 }
-export async function getTestsOrder(disciplineParam: string,termparam:number,category:string){
 
-  const resultdis= await discipline.findDisciplineByName(disciplineParam)
-  const resultterm= await termRepo.findTermByNumber(termparam)
-  const resultcat= await categoryRepo.findCategoryByName(category)
-
-  return {
-    disciplineName: resultdis.name,
-    termNumber:resultterm.number,
-    categoryTest:resultcat.name
-  }
-
-}
 export async function getTestByTerm(){
  
   return await testRepository.findTestsByDisciplineId()
