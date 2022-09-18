@@ -20,6 +20,7 @@ export async function createUser(user:userSchema.CreateUserType){
 }
 
 export async function loginUser(login: userSchema.CreateUserType) {
+  
   const user = await createToken(login);
   const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET);
   return token;
@@ -30,7 +31,7 @@ export async function createToken(login: userSchema.CreateUserType) {
   if (!user) throw failUnauth("unauthorized");
 
   const isPasswordValid = bcrypt.compareSync(login.password, user.password);
-  if (!isPasswordValid) throw failUnauth("Invalid passwofd");
+  if (!isPasswordValid) throw failUnauth("Invalid password");
 
   return user;
 }

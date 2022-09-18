@@ -6,7 +6,7 @@ export async function login(req:Request ,res:Response){
   const user = req.body;
   
   const token = await loginUser(user);
-  res.send({token});
+  res.send({token}).status(200);
 }
 
 export async function signup(req:Request ,res:Response){
