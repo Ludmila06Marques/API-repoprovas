@@ -5,9 +5,9 @@ import * as validateToken from "../middlewares/ validateToken.js"
 
 const termRoute = Router();
 
-termRoute.get("/term" , termcontroller.getAllTerms);
-termRoute.get("/term/:id" ,termcontroller.getOneTerm);
-termRoute.post("/term" , validateTerm ,termcontroller.insertTerm );
+termRoute.get("/term" , validateToken.validateTokenFunction, termcontroller.getAllTerms);
+termRoute.get("/term/:id" , validateToken.validateTokenFunction,termcontroller.getOneTerm);
+termRoute.post("/term" ,  validateToken.validateTokenFunction,validateTerm ,termcontroller.insertTerm );
 //nao tem como deletar um periodo
 
 

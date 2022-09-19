@@ -31,6 +31,7 @@ export async function createToken(login: userSchema.CreateUserType) {
   if (!user) throw failUnauth("unauthorized");
 
   const isPasswordValid = bcrypt.compareSync(login.password, user.password);
+  console.log(isPasswordValid)
   if (!isPasswordValid) throw failUnauth("Invalid password");
 
   return user;
