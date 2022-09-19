@@ -1,0 +1,4 @@
+
+PORT=5008
+DATABASE_URL="postgres://postgres:Mila0602@localhost:5432/repoprovas_teste"
+JWT_SECRET=Z4sqdsqd2353YYKTRIU76RIUJYUK

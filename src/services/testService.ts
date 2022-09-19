@@ -6,7 +6,7 @@ import * as discipline from "../repositories/disciplineRepostory.js"
 import * as categoryRepo from "../repositories/categoryRepository.js"
 import * as teacher from "../repositories/teacherRepository.js"
 import * as teachersDiscipline from "../repositories/teachersDisciplineRepository.js"
-import { CreateTestType } from "../type/testType";
+import { CreateTestType } from "../type/testType.js";
 
 
 

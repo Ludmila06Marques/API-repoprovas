@@ -6,7 +6,11 @@ import * as termRepository from "../repositories/termRepository.js"
 
 export async function getAllDisciplines(){
 
-return await disciplineRepo.getAllDisciplines()
+    const result = await disciplineRepo.getAllDisciplines()
+ 
+    if(!result) throw failNotFound('Disciplines does not exist')
+  
+    return result
  
     
 }
